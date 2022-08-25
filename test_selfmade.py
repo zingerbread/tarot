@@ -2,7 +2,9 @@ import unittest
 import selfmade
 
 class TestJunban(unittest.TestCase):
-
+    #リストの合計値で判断
+    #Todo:自分で計算しなくてもいいようになど複雑なこともできるようにする
+    #Fixme:被りがあった場合見落とす
     def test_junban(self):
         value1 = 3
         value2 = 0
@@ -15,6 +17,7 @@ class TestJunban(unittest.TestCase):
             actual += check
         self.assertEqual(expected, actual)
     
+    #要素数,要素の値が指定した範囲か判断
     def test_pozijun(self):
         value1 = 22
         value2 = 0

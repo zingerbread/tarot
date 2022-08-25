@@ -1,14 +1,23 @@
 import selfmade
 from selfmade import Userc
 
+#引数の内容
+#text = ["リスト名" : Textファイルの読み込み内容, ...]    tarotmain.pyにて宣言
+#draw_log = 数値(0~22現在何枚目かの記録)
+#turn = ["リスト名" : 順番のリスト, ...]    title()にて宣言
+
 def title(text):
     print("\n[[タロット]]\n")
+
+    #タロットの順番と位置を抽選
     junbanlist = selfmade.junban(22, 0, 21)
     posijunlist = selfmade.posijun(22, 0, 1)
     turn = {"junbanlist" : junbanlist, "posijunlist" : posijunlist}
     draw_log = 0
-    print(junbanlist)
-    print(posijunlist)
+
+    #ちゃんと機能しているか確認用
+    #print(junbanlist)
+    #print(posijunlist)
 
     u_choice = Userc.RESET
     while u_choice != Userc.DRAW and u_choice != Userc.END and u_choice != Userc.INFO:
@@ -25,6 +34,7 @@ def title(text):
         pass
 
 def select(turn, draw_log, text):
+    #draw_logが22の場合次の1枚を引けないようにする(今回のタロットカードが22枚のため)
     if draw_log != 22:
         u_choice = Userc.RESET
         while u_choice != Userc.DRAW and u_choice != Userc.END and u_choice != Userc.RESTART and u_choice != Userc.EXPLAIN and u_choice != Userc.LIST:
@@ -56,8 +66,8 @@ def tarot_info(turn, draw_log, text):
     list_data = text["list_data"]
     exp_data = text["exp_data"]
 
-    for info in info_data:
-        print(info)
+    [print(info) for info in info_data]
+
     u_choice = Userc.RESET
     while u_choice != Userc.LOOK_Y and u_choice != Userc.LOOK_N:
         print("それぞれのカードの意味を\n見る場合…1\t見ない場合…2")
@@ -103,6 +113,7 @@ def tarot_list(turn, draw_log, text):
     posijunlist = turn["posijunlist"]
     list_data = text["list_data"]
     posi_data = text["posi_data"]
+
     for count in range(draw_log):
         print("<<" + str(count + 1) + "枚目>>\n   " + list_data[junbanlist[count]] + posi_data[posijunlist[count]] + "\n")
         count += 1

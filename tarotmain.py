@@ -11,6 +11,7 @@ if info_data == -1 or list_data == -1 or posi_data == -1 or exp_data == -1:
     exit()
 
 text = {"info_data" : info_data, "list_data" : list_data, "posi_data" : posi_data, "exp_data" : exp_data}
+
 tarotmenu.title(text)
 
 print("Bye!")

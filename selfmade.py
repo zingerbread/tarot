@@ -1,11 +1,10 @@
 import random
 from enum import Enum
 
-
+#ランダムな値を第一引数の数だけ被らないようにリストで返す
 def junban(number, min_num, max_num):
     junbanlist = []
     random.seed()
-    junbanlist.clear()
     junbanlist.append(random.randint(min_num, max_num))
     no = 1
     while no < number:
@@ -23,9 +22,10 @@ def junban(number, min_num, max_num):
 
     return junbanlist
 
+#ランダムな値を第一引数の数だけリストで返す(被り有り)
 def posijun(number, min_num, max_num):
     posijunlist = []
-    posijunlist.clear()
+    random.seed()
     no = 0
     while no < number:
         posijunlist.append(random.randint(min_num, max_num))
@@ -33,6 +33,7 @@ def posijun(number, min_num, max_num):
     
     return posijunlist
 
+#userの選択肢
 class Userc(Enum):
     RESET = -1
     INFO = 0
@@ -44,6 +45,8 @@ class Userc(Enum):
     LOOK_Y = 1
     LOOK_N = 2
 
+#数値が入力されるまでループし、数値が入力されるとその数値に対応したEnumを返す
+#TODO:直接inputをEnumに指定する方法を見つける
 def SuziJudge():
     input_data = input("入力>> ")
     if input_data.isdecimal():
@@ -70,6 +73,8 @@ def SuziJudge():
     elif input_number == 2:
         return Userc.LOOK_N
 
+#引数のファイルを読み込む
+#拡張子も必要
 def TextRead(file_name):
     text_data = []
     try:
