@@ -16,6 +16,8 @@ def title(text: Dict[str, List[str]]):
     junbanlist = utils.junban(22, 0, 21)
     posijunlist = utils.posijun(22, 0, 1)
     turn = {"junbanlist": junbanlist, "posijunlist": posijunlist}
+    print(turn)
+    return
     draw_log = 0
 
     # ちゃんと機能しているか確認用
