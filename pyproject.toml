@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "tarot"
+version = "0.1.0"
+description = ""
+authors = ["shun <airtin69@outlook.jp>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+autopep8 = "^1.7.0"
+isort = "^5.10.1"
+black = "^22.6.0"
+
+[tool.poetry.dev-dependencies]
+pynvim = "^0.4.3"
+jedi = "^0.18.1"
+flake8 = "^5.0.4"
+autopep8 = "^1.7.0"
+jedi-language-server = "0.36.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

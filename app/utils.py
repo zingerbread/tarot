@@ -1,7 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""このような自作関数群は utils などとまとめられがち
+"""
+
 import random
 from enum import Enum
 
-#ランダムな値を第一引数の数だけ被らないようにリストで返す
+
+# ランダムな値を第一引数の数だけ被らないようにリストで返す
 def junban(number, min_num, max_num):
     junbanlist = []
     random.seed()
@@ -22,7 +28,8 @@ def junban(number, min_num, max_num):
 
     return junbanlist
 
-#ランダムな値を第一引数の数だけリストで返す(被り有り)
+
+# ランダムな値を第一引数の数だけリストで返す(被り有り)
 def posijun(number, min_num, max_num):
     posijunlist = []
     random.seed()
@@ -30,10 +37,11 @@ def posijun(number, min_num, max_num):
     while no < number:
         posijunlist.append(random.randint(min_num, max_num))
         no += 1
-    
+
     return posijunlist
 
-#userの選択肢
+
+# userの選択肢
 class Userc(Enum):
     RESET = -1
     INFO = 0
@@ -45,15 +53,16 @@ class Userc(Enum):
     LOOK_Y = 1
     LOOK_N = 2
 
-#数値が入力されるまでループし、数値が入力されるとその数値に対応したEnumを返す
-#TODO:直接inputをEnumに指定する方法を見つける
+
+# 数値が入力されるまでループし、数値が入力されるとその数値に対応したEnumを返す
+# TODO:直接inputをEnumに指定する方法を見つける
 def SuziJudge():
     input_data = input("入力>> ")
     if input_data.isdecimal():
         input_number = int(input_data)
     else:
         return SuziJudge()
-    
+
     if input_number == -1:
         return Userc.RESET
     elif input_number == 0:
@@ -73,17 +82,19 @@ def SuziJudge():
     elif input_number == 2:
         return Userc.LOOK_N
 
-#引数のファイルを読み込む
-#拡張子も必要
+
+# 引数のファイルを読み込む
+# 拡張子も必要
 def TextRead(file_name):
     text_data = []
     try:
-        with open(f"{file_name}", "r", encoding = "UTF-8") as f:
+        with open(f"{file_name}", "r", encoding="UTF-8") as f:
             data_raw = f.readlines()
     except FileNotFoundError:
         print(f"{file_name}ファイルがありません")
         return -1
 
     text_data += [x.rstrip("\n") for x in data_raw]
-        
+
     return text_data
+
