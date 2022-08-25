@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""このような自作関数群は utils などとまとめられがち
+"""
+
 import random
 from enum import Enum
 

@@ -2,12 +2,12 @@ import argparse
 from os.path import join as pjoin
 
 import tarotmenu
-from selfmade import TextRead
+from utils import TextRead
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data", "-d", type=str, default='./data')
+    parser.add_argument("--data", "-d", type=str, default="./data")
     args = parser.parse_args()
 
     info_data = TextRead(pjoin(args.data, "tarotinfo.txt"))
