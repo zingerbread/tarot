@@ -1,7 +1,9 @@
+import random
 import argparse
 from dataclasses import dataclass
 from enum import Enum
 from os.path import join as pjoin
+from secrets import choice
 from typing import Generator, List, Optional
 
 from utils import TextRead
@@ -32,7 +34,7 @@ class TarotCard:
 class TarotCardDeck:
     """カードのデッキとその操作
     """
-    def __init__(self, list_data: List[str], exp_data: List[str]):
+    def __init__(self, list_data: List[str], exp_data: List[str], posi_deta: List[str]):
         # 手軽にデータチェックなど行いたい時に assert が便利
         assert len(list_data) == len(exp_data)
         self.cards = [
@@ -56,6 +58,8 @@ class TarotCardDeck:
             ランダムに position を入れる
                 本クラスに position の候補も入れる必要がある
         """
+        shuffled_card = random.shuffle(self.cards)
+
         for card in self.cards:
             yield card
 
@@ -65,15 +69,17 @@ class GameState(Enum):
     DRAWING = 1
     FINISHED = 2
     EXITED = 3
+    INFORMATION = 4
 
 
 class GameManager:
-    def __init__(self, deck: TarotCardDeck):
+    def __init__(self, deck: TarotCardDeck, info):
         """
         NOTE:
             Global 的に使いたかった変数は、クラスのプロパティとして定義するとよさそう
             今回は GameState 型の self.state にて宣言
         """
+        self.info = info
         self.deck = deck
         self.state: GameState = GameState.TITLE
         pass
@@ -86,6 +92,8 @@ class GameManager:
                 self.handle_drawing()
             elif self.state == GameState.FINISHED:
                 pass
+            elif self.state == GameState.INFORMATION:
+                self.handle_information()
             else:
                 break
         print("Bye!")
@@ -106,6 +114,7 @@ class GameManager:
             return
         elif choise == "0":
             # TODO: 要実装
+            self.state = GameState.INFORMATION
             return
         else:
             print('無効な入力')
@@ -113,7 +122,7 @@ class GameManager:
     def handle_drawing(self):
         drawed_cards: List[TarotCard] = []
         for card in self.deck.card_generator():
-            print(card)
+            print(card.title)
             drawed_cards.append(card)
             while True:
                 print("次の1枚…1\t終了…2\n最初から…3\t解説…4\n一覧…5")
@@ -136,6 +145,24 @@ class GameManager:
                     )
                 else:
                     print('無効な入力')
+    
+    def handle_information(self):
+        print()
+        for line in self.info:
+            print(line)
+        print()
+        while True:
+            print("それぞれのカードの意味を\n見る場合…1\t見ない場合…2")
+            choise = input("> ")
+            if choise == "1":
+                print(f"\n{self.deck}\n")
+                break
+            elif choise == "2":
+                break
+            else:
+                print('無効な入力')
+
+        self.state = GameState.TITLE
 
 
 def main():
@@ -152,8 +179,9 @@ def main():
         print("\nファイルを確認してください")
         exit()
 
-    deck = TarotCardDeck(list_data, exp_data)
-    game = GameManager(deck)
+    info = info_data
+    deck = TarotCardDeck(list_data, exp_data, posi_data)
+    game = GameManager(deck, info)
     try:
         game.run()
     except KeyboardInterrupt:
