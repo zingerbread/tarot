@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from enum import Enum
 from os.path import join as pjoin
 from secrets import choice
+from turtle import position
 from typing import Generator, List, Optional
 
 from utils import TextRead
@@ -28,19 +29,20 @@ class TarotCard:
             >>> str(card)
             hoge (fuga)
         """
-        return f"{self.title} ({self.explain})"
+        return f"{self.title} ({self.explain}) {self.position}"
 
 
 class TarotCardDeck:
     """カードのデッキとその操作
     """
-    def __init__(self, list_data: List[str], exp_data: List[str], posi_deta: List[str]):
+    def __init__(self, list_data: List[str], exp_data: List[str], posi_data: List[str]):
         # 手軽にデータチェックなど行いたい時に assert が便利
         assert len(list_data) == len(exp_data)
         self.cards = [
             TarotCard(title, explain, None)
             for title, explain in zip(list_data, exp_data)
         ]
+        self.positions = posi_data
 
     def __str__(self):
         return "\n".join([f"{x}" for x in self.cards])
@@ -51,16 +53,17 @@ class TarotCardDeck:
             今回のようなループ処理は Python のジェネレータを使うと簡潔に書ける
             最初は理解しづらいと思うが、ぜひ習得してほしい
         TODO:
-            シャッフル機能を追加
+            シャッフル機能を追加    -完了
                 こんなんでいけるはず
                 >>> shuffled_card = random.shuffle(self.cards)
 
-            ランダムに position を入れる
+            ランダムに position を入れる    -完了
                 本クラスに position の候補も入れる必要がある
         """
         shuffled_card = random.shuffle(self.cards)
 
         for card in self.cards:
+            card.position = random.choice(self.positions)
             yield card
 
 
@@ -113,7 +116,7 @@ class GameManager:
             self.state = GameState.EXITED
             return
         elif choise == "0":
-            # TODO: 要実装
+            # TODO: 要実装    -完了
             self.state = GameState.INFORMATION
             return
         else:
@@ -122,12 +125,15 @@ class GameManager:
     def handle_drawing(self):
         drawed_cards: List[TarotCard] = []
         for card in self.deck.card_generator():
-            print(card.title)
+            print(f"{card.title}{card.position}")
             drawed_cards.append(card)
             while True:
-                print("次の1枚…1\t終了…2\n最初から…3\t解説…4\n一覧…5")
+                if len(drawed_cards) < 22:
+                    print("次の1枚…1\t終了…2\n最初から…3\t解説…4\n一覧…5")
+                else:
+                    print("<<22種済>>\t終了…2\n最初から…3\t解説…4\n一覧…5")
                 choise = input("> ")
-                if choise == "1":
+                if choise == "1" and len(drawed_cards) < 22:
                     break
                 elif choise == "2":
                     self.state = GameState.EXITED
