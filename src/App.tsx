@@ -8,7 +8,7 @@ import DeckShuffle from './components/molecules/DeckShuffle'
 const App: React.FC = () => {
   return (
     <ChakraProvider resetCSS={false}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/debug" element={<DeckShuffle />} />

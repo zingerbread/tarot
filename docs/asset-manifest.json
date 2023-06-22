@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.073c9b0a.css",
-    "main.js": "/static/js/main.36537ff8.js",
-    "static/js/787.b701888c.chunk.js": "/static/js/787.b701888c.chunk.js",
-    "index.html": "/index.html",
-    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
-    "main.36537ff8.js.map": "/static/js/main.36537ff8.js.map",
-    "787.b701888c.chunk.js.map": "/static/js/787.b701888c.chunk.js.map"
+    "main.css": "/tarot/static/css/main.073c9b0a.css",
+    "main.js": "/tarot/static/js/main.68a4c887.js",
+    "static/js/787.b701888c.chunk.js": "/tarot/static/js/787.b701888c.chunk.js",
+    "index.html": "/tarot/index.html",
+    "main.073c9b0a.css.map": "/tarot/static/css/main.073c9b0a.css.map",
+    "main.68a4c887.js.map": "/tarot/static/js/main.68a4c887.js.map",
+    "787.b701888c.chunk.js.map": "/tarot/static/js/787.b701888c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.36537ff8.js"
+    "static/js/main.68a4c887.js"
   ]
 }
