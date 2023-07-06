@@ -37,8 +37,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.14.0
+      - name: Install dependencies
+        run: npm install
       - name: Build
-        run: npm install && npm ci && npmrun build
+        run: npm ci && npmrun build
         env:
           PUBLIC_URL: /tarot
       - name: Upload artifact
