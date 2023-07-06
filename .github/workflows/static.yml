@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: 16
       - name: build
-        run: npm ci && npmrun build
+        run: npm install && npm ci && npmrun build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
