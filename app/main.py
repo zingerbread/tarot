@@ -3,8 +3,6 @@ import argparse
 from dataclasses import dataclass
 from enum import Enum
 from os.path import join as pjoin
-from secrets import choice
-from turtle import position
 from typing import Generator, List, Optional
 
 from utils import TextRead
@@ -12,8 +10,8 @@ from utils import TextRead
 
 @dataclass
 class TarotCard:
-    """カード情報を定義
-    """
+    """カード情報を定義"""
+
     title: str
     explain: str
     position: Optional[str]  # shuffle 時に position が入る
@@ -33,8 +31,8 @@ class TarotCard:
 
 
 class TarotCardDeck:
-    """カードのデッキとその操作
-    """
+    """カードのデッキとその操作"""
+
     def __init__(self, list_data: List[str], exp_data: List[str], posi_data: List[str]):
         # 手軽にデータチェックなど行いたい時に assert が便利
         assert len(list_data) == len(exp_data)
@@ -60,7 +58,6 @@ class TarotCardDeck:
             ランダムに position を入れる    -完了
                 本クラスに position の候補も入れる必要がある
         """
-        shuffled_card = random.shuffle(self.cards)
 
         for card in self.cards:
             card.position = random.choice(self.positions)
@@ -120,7 +117,7 @@ class GameManager:
             self.state = GameState.INFORMATION
             return
         else:
-            print('無効な入力')
+            print("無効な入力")
 
     def handle_drawing(self):
         drawed_cards: List[TarotCard] = []
@@ -150,8 +147,8 @@ class GameManager:
                         "\n".join([f"{i:02d}: {x}" for i, x in enumerate(drawed_cards)])
                     )
                 else:
-                    print('無効な入力')
-    
+                    print("無効な入力")
+
     def handle_information(self):
         print()
         for line in self.info:
@@ -166,7 +163,7 @@ class GameManager:
             elif choise == "2":
                 break
             else:
-                print('無効な入力')
+                print("無効な入力")
 
         self.state = GameState.TITLE
 
@@ -199,4 +196,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
