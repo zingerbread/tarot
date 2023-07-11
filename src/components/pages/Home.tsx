@@ -31,9 +31,6 @@ const Home = () => {
     setDrowCardValue("");
     setIsDrowDisabled(false);
   };
-  useEffect(() => {
-    console.log(deck);
-  }, [deck[0]]);
   const [deckTop, setDeckTop] = useState<DeckCardType>();
   const [drowCard, setDrowCard] = useState<DeckCardType>();
   const [drowCardIndex, setDrowCardIndex] = useState<number>(0);

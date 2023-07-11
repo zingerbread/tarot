@@ -42,9 +42,6 @@ const DeckShuffle = () => {
       setDeck(deck);
     });
   };
-  useEffect(() => {
-    console.log(deck);
-  }, [deck[0]]);
   return (
     <>
       <Heading ml={4}>デバッグ</Heading>
