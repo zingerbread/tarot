@@ -82,7 +82,7 @@ const Home = () => {
   };
   useEffect(() => {
     handleTarotCardInfomation();
-  }, []);
+  });
   const [isDrowDisabled, setIsDrowDisabled] = useState<boolean>(true);
   return (
     <>
