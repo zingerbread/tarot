@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import deckOrder from "../atoms/DeckOrder";
 import deckPosition from "../atoms/DeckPosition";
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
