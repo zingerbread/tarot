@@ -27,7 +27,6 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: './yarn.lock'
       - run: yarn install
-      - run: yarn generate
       - run: yarn format
       - run: yarn lint
       - name: Commit
