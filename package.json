@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eslint": "eslint --ext .ts,.tsx,.js,.jsx --fix src/*.{ts,tsx,js,jsx}",
+    "eslint": "eslint --ext .ts,.tsx,.js,.jsx --fix src/**.{ts,tsx,js,jsx}",
     "format": "yarn prettier --write src/*.{ts,tsx,js,jsx}",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
