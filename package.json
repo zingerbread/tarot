@@ -25,6 +25,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "npm run lint:tsc && npm run lint:eslint",
+    "format": "yarn prettier --write src/*",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
