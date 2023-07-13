@@ -118,7 +118,7 @@ const Home = () => {
               )}
             </PopoverContent>
           </Popover>
-        
+        </Box>
       </Flex>
       <Box ml={1}>
         <Button
