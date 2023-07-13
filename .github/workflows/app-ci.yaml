@@ -8,7 +8,7 @@ on:
       - develop
     paths:
       - '.github/workflows/app-ci.yaml'
-      - 'src/**'
+      - 'src/*.{ts,tsx,js,jsx}'
       - '!**/README.md'
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     defaults:
       run:
-        working-directory: './src/*.{ts,tsx,js,jsx}'
+        working-directory: './src/'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
