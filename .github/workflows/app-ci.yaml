@@ -19,7 +19,7 @@ jobs:
       run:
         working-directory: './src/'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16.14.0
@@ -27,7 +27,6 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: 'yarn.lock'
       - run: yarn install
-      - run: yarn generate
       - run: yarn format
       - run: yarn lint
       - name: Commit
