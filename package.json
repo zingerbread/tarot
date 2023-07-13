@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eslint": "eslint --fix --ext .ts,.tsx,.js,.jsx ./src/**",
+    "eslint": "eslint --fix --ext ts,tsx,js,jsx src",
     "format": "yarn prettier --write src/*.{ts,tsx,js,jsx}",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -33,11 +33,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react-hooks/recommended",
-      "plugin:react/recommended"
+      "react-app/jest"
     ],
     "env": {
       "browser": true
