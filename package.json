@@ -25,9 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "npm run lint:tsc && npm run lint:eslint",
-    "lint:tsc": "tsc --noEmit --project tsconfig.json",
-    "lint:eslint": "eslint .",
+    "eslint": "eslint --ext .ts,.tsx,.js,.jsx --fix src/**",
     "format": "yarn prettier --write src/*.{ts,tsx,js,jsx}",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -36,7 +34,14 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "env": {
+      "browser": true
+    },
+    "globals": {},
+    "rules": {
+      "brace-style": "error"
+    }
   },
   "browserslist": {
     "production": [
