@@ -18,7 +18,6 @@ import {
     PopoverContent,
     PopoverHeader,
     PopoverTrigger,
-    Stack,
     Text,
 } from '@chakra-ui/react'
 import Header from '../organisms/Header'
@@ -216,7 +215,7 @@ const Home = () => {
                             infoType: 'card',
                             cardNumber: card.stackingOrder,
                         })
-                        if (index >= drowCardIndex) return
+                        if (index >= drowCardIndex) return <></>
                         return (
                             <Box key={index} ml={2} mb={1}>
                                 <Text m={0}>{index + 1}枚目</Text>
