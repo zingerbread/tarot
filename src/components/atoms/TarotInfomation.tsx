@@ -32,7 +32,7 @@ const TarotInfomationData = {
 };
 
 type TarotInfomationProps = {
-  infoType: string;
+  infoType: "card" | "tarot";
   cardNumber?: number;
 };
 const tarotInfomation = (props: TarotInfomationProps) => {
