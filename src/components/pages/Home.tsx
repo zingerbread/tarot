@@ -137,7 +137,7 @@ const Home = () => {
                                 </Box>
                             )}
                             <PopoverFooter>
-                                <Button onClick={() => navigate("/tarot/gallery")}>カード一覧</Button>
+                                <Button onClick={() => navigate("/gallery")}>カード一覧</Button>
                             </PopoverFooter>
                         </PopoverContent>
                     </Popover>
