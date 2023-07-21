@@ -11,9 +11,9 @@ const App: React.FC = () => {
         <ChakraProvider resetCSS={false}>
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Routes>
-                    <Route path="/tarot/" element={<Home />} />
-                    <Route path="/tarot/gallery" element={<Gallery />} />
-                    <Route path="/tarot/debug" element={<DeckShuffle />} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/gallery" element={<Gallery />} />
+                    <Route path="/debug" element={<DeckShuffle />} />
                 </Routes>
             </BrowserRouter>
         </ChakraProvider>
