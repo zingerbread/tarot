@@ -16,8 +16,11 @@ import {
     PopoverBody,
     PopoverCloseButton,
     PopoverContent,
+    PopoverFooter,
     PopoverHeader,
     PopoverTrigger,
+    Show,
+    SimpleGrid,
     Text,
 } from '@chakra-ui/react'
 import Header from '../organisms/Header'
@@ -27,8 +30,10 @@ import tarotInfomation from '../atoms/TarotInfomation'
 import cardNumberChanger from '../atoms/CardNumberChanger'
 
 import TarotCardImageViewer from '../molecules/TarotCardImageViewer'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+    const navigate = useNavigate()
     const { deckShuffle } = useDeckShuffle()
     const [deck, setDeck] = useState<Array<DeckCardType>>([])
     const shuffleDeck = () => {
@@ -131,6 +136,9 @@ const Home = () => {
                                     )}
                                 </Box>
                             )}
+                            <PopoverFooter>
+                                <Button onClick={() => navigate("/tarot/gallery")}>カード一覧</Button>
+                            </PopoverFooter>
                         </PopoverContent>
                     </Popover>
                 </Box>
@@ -141,12 +149,15 @@ const Home = () => {
                         {drowCard ? (
                             <TarotCardImageViewer
                                 number={drowCard.stackingOrder}
-                                name={drowCardName}
                                 position={drowCard.position}
                                 imageWidthSize={300}
                             />
                         ) : (
-                            <TarotCardImageViewer number={-1} imageWidthSize={300} blank />
+                            <TarotCardImageViewer
+                                number={-1}
+                                imageWidthSize={300}
+                                blank
+                            />
                         )}
                     </Center>
                 </Box>
@@ -205,30 +216,53 @@ const Home = () => {
                 </Button>
             </Box>
             <Box>
-                {isOrderShow &&
-                    deck.map((card, index) => {
-                        const tarotCard = cardNumberChanger({
-                            number: card.stackingOrder,
-                            position: card.position,
-                        })
-                        const tarotCardInfo = tarotInfomation({
-                            infoType: 'card',
-                            cardNumber: card.stackingOrder,
-                        })
-                        if (index >= drowCardIndex) return <></>
-                        return (
-                            <Box key={index} ml={2} mb={1}>
-                                <Text m={0}>{index + 1}枚目</Text>
-                                <Text m={0}>
-                                    {tarotCard.number} {tarotCard.name}の
-                                    {tarotCard.position}
-                                </Text>
-                                <Text mt={0} ml={2} mb={2}>
-                                    {tarotCardInfo}
-                                </Text>
-                            </Box>
-                        )
-                    })}
+                {isOrderShow && (
+                    <SimpleGrid
+                        columns={4}
+                        spacing={1}
+                        minChildWidth={{ base: '100px', md: '180px' }}
+                    >
+                        {deck.map((card, index) => {
+                            const tarotCard = cardNumberChanger({
+                                number: card.stackingOrder,
+                                position: card.position,
+                            })
+                            if (index >= drowCardIndex) return <></>
+                            return (
+                                <Box key={index} ml={2} mb={1}>
+                                    <Text
+                                        m={0}
+                                        fontSize={{ base: '8', md: '14' }}
+                                    >
+                                        {index + 1}枚目
+                                    </Text>
+                                    <Show above="md">
+                                        <Text mt={0} ml={2} fontSize={14}>
+                                            {tarotCard.number} {tarotCard.name}
+                                            の{tarotCard.position}
+                                        </Text>
+                                    </Show>
+                                    <Show below="md">
+                                        <Text mt={0} ml={2} fontSize={8}>
+                                            {tarotCard.number} {tarotCard.name}
+                                        </Text>
+                                        <Text mt={-3} ml={2} fontSize={8}>
+                                            {tarotCard.position}
+                                        </Text>
+                                    </Show>
+                                    <TarotCardImageViewer
+                                        number={card.stackingOrder}
+                                        imageWidthSize={{
+                                            base: '100px',
+                                            md: '180px',
+                                        }}
+                                        position={card.position}
+                                    />
+                                </Box>
+                            )
+                        })}
+                    </SimpleGrid>
+                )}
             </Box>
         </>
     )
