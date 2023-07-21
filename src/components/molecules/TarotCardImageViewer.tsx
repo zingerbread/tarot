@@ -33,6 +33,7 @@ import worldImage from '../../tarot_temp_image/XXI.png'
 import blankImage from '../../tarot_temp_image/Blank.png'
 import { useState } from 'react'
 import tarotInfomation from '../atoms/TarotInfomation'
+import cardNumberChanger from '../atoms/CardNumberChanger'
 
 const TarotCardImages = [
     { src: foolImage, alt: 'The Fool' },
@@ -62,10 +63,9 @@ const BlankCardImage = { src: blankImage, alt: 'Blank' }
 
 type TarotCardImageViewerProps = {
     number: number
-    name?: string
     position?: number
     blank?: boolean
-    imageWidthSize: number | string
+    imageWidthSize: number | string | object
 }
 export const TarotCardImageViewer = (props: TarotCardImageViewerProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -73,8 +73,19 @@ export const TarotCardImageViewer = (props: TarotCardImageViewerProps) => {
         infoType: 'card',
         cardNumber: props.number,
     })
+    const tarotCard = cardNumberChanger({
+        number: props.number,
+    })
+    const cardName = `${tarotCard.number} ${tarotCard.name}`
 
-    if (props.blank) return <Image width={props.imageWidthSize} src={BlankCardImage.src} alt={BlankCardImage.alt} />
+    if (props.blank)
+        return (
+            <Image
+                width={props.imageWidthSize}
+                src={BlankCardImage.src}
+                alt={BlankCardImage.alt}
+            />
+        )
 
     return (
         <>
@@ -102,7 +113,7 @@ export const TarotCardImageViewer = (props: TarotCardImageViewerProps) => {
                 >
                     <ModalOverlay />
                     <ModalContent mx="10">
-                        <ModalHeader>{props.name}</ModalHeader>
+                        <ModalHeader>{cardName}</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>{cardInfomation}</ModalBody>
                     </ModalContent>

@@ -11,13 +11,13 @@ const Gallery = () => {
         <>
             <Header />
             <Heading ml={4}>Gallery</Heading>
-            <SimpleGrid columns={4} spacing={1} minChildWidth="100px">
+            <SimpleGrid columns={4} spacing={1} minChildWidth={{ base: '100px', md: '180px' }}>
                 {[...Array(22)].map((_, i) => {
                     return (
-                        <Box key={i} width="60px">
+                        <Box key={i} width={{ base: '100px', md: '200px' }}>
                             <TarotCardImageViewer
                                 number={i}
-                                imageWidthSize={'100px'}
+                                imageWidthSize={{ base: '100px', md: '180px' }}
                                 position={0}
                             />
                         </Box>
