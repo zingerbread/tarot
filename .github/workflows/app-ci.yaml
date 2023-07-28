@@ -25,7 +25,7 @@ jobs:
           node-version: 16.14.0
           registry-url: https://npm.pkg.github.com
           cache: 'yarn'
-          cache-dependency-path: 'yarn.lock'
+          cache-dependency-path: 'react/package-lock.json'
       - run: yarn install
       - run: yarn format
       - run: yarn eslint
