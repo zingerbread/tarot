@@ -10,7 +10,7 @@ const Header = () => {
       </Heading>
       <Box ml="16" mt="-8">
         <Text fontSize="md" as="b">
-          version 0.2.0
+          version 0.2.1
         </Text>
       </Box>
     </Box>
